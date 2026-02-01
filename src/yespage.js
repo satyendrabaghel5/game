@@ -7,7 +7,7 @@ function YesPage() {
             <h1>Yayyy! 💖 You are my Valentine 🥰</h1>
 
             <p style={{ fontSize: "20px", textAlign: "center", marginTop: "15px" }}>
-                You just made my heart so happy 💕 <br />
+                You just made my heart special 💕 <br />
                 Let’s make this Valentine unforgettable ✨
             </p>
 
