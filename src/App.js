@@ -4,6 +4,28 @@ import "./App.css";
 import love from "./1.png";
 import YesPage from "./yespage";
 
+const icons = ["💖", "💋", "💕", "💓"];
+
+function FloatingHearts() {
+    return (
+        <div className="floating-bg">
+            {Array.from({ length: 25 }).map((_, i) => (
+                <span
+                    key={i}
+                    style={{
+                        left: `${Math.random() * 100}%`,
+                        animationDelay: `${Math.random() * 5}s`,
+                        animationDuration: `${6 + Math.random() * 6}s`,
+                        fontSize: `${18 + Math.random() * 30}px`,
+                    }}
+                >
+                    {icons[Math.floor(Math.random() * icons.length)]}
+                </span>
+            ))}
+        </div>
+    );
+}
+
 function Home() {
     const [noStyle, setNoStyle] = useState({});
     const noBtnRef = useRef(null);
@@ -39,19 +61,25 @@ function Home() {
             if (dx < 120 && dy < 120) moveNoButton();
         };
 
-        window.addEventListener("mousemove", e => handleMove(e.clientX, e.clientY));
-        window.addEventListener("touchmove", e => {
+        const mouseMove = (e) => handleMove(e.clientX, e.clientY);
+        const touchMove = (e) => {
             if (e.touches[0]) handleMove(e.touches[0].clientX, e.touches[0].clientY);
-        });
+        };
+
+        window.addEventListener("mousemove", mouseMove);
+        window.addEventListener("touchmove", touchMove);
 
         return () => {
-            window.removeEventListener("mousemove", handleMove);
-            window.removeEventListener("touchmove", handleMove);
+            window.removeEventListener("mousemove", mouseMove);
+            window.removeEventListener("touchmove", touchMove);
         };
     }, []);
 
     return (
         <div className="container">
+            {/* ❤️ FLOATING HEARTS */}
+            <FloatingHearts />
+
             <img src={love} alt="Love" className="love-img" />
             <h1>Hiiiii Seju, Will you be my Valentine? 💕</h1>
 
